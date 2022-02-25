@@ -58,7 +58,7 @@
     <emulator>/usr/bin/qemu-system-x86_64</emulator>
     <disk type='file' device='disk'>
       <driver name='qemu' type='qcow2'/>
-      <source file='PATHTOHDD' index='1'/>
+      <source file='/home/leizhang/VM/storage/win10.qcow2' index='1'/>
       <backingStore/>
       <target dev='vda' bus='virtio'/>
       <boot order='1'/>
@@ -183,10 +183,6 @@
       <address type='pci' domain='0x0000' bus='0x05' slot='0x00' function='0x0'/>
     </memballoon>
   </devices>
-  <seclabel type='dynamic' model='apparmor' relabel='yes'>
-    <label>libvirt-1b7fa3cc-b3ba-464b-8585-1423514c1067</label>
-    <imagelabel>libvirt-1b7fa3cc-b3ba-464b-8585-1423514c1067</imagelabel>
-  </seclabel>
   <seclabel type='dynamic' model='dac' relabel='yes'>
     <label>+0:+0</label>
     <imagelabel>+0:+0</imagelabel>
