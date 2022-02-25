@@ -176,6 +176,10 @@
     <qemu:arg value="device.hostdev0.ramfb=on"/>
     <qemu:arg value="-set"/>
     <qemu:arg value="device.hostdev0.driver=vfio-pci-nohotplug"/>
+    <qemu:arg value="-set"/>
+<qemu:arg value="device.hostdev0.xres=1366"/>
+<qemu:arg value="-set"/>
+<qemu:arg value="device.hostdev0.yres=768"/>
     <qemu:env name="INTEL_DEBUG" value="norbc"/>
   </qemu:commandline>
 </domain>
