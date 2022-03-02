@@ -8,7 +8,11 @@ Windows VM running on Qemu/KVM with cpu pinning, GVTg passthrought and hyperviso
 Assuming the host has never been set up for running a VM in qemu/kvm.
 
 sudo modprobe kvmgt vfio-iommu-type1 mdev vfio-mdev
+
 0) sudo apt-get install qemu qemu-system-x86 qemu-kvm qemu-utils virt-manager libvirt-daemon-driver-qemu
+
+yay -S libvirt-hook-helper-git
+
 sudo systemctl enable libvirtd
 sudo systemctl enable virtlogd.socket
 
