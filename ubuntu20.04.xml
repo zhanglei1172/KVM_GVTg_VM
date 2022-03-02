@@ -1,4 +1,4 @@
-<domain type="kvm">
+<domain xmlns:qemu="http://libvirt.org/schemas/domain/qemu/1.0" type="kvm">
   <name>ubuntu20.04</name>
   <uuid>029a06e5-8a30-4f52-8133-3a42271b5aa9</uuid>
   <metadata>
@@ -153,5 +153,17 @@
     </rng>
   </devices>
   <seclabel type="dynamic" model="dac" relabel="yes"/>
+  <qemu:commandline>
+    <qemu:arg value="-set"/>
+    <qemu:arg value="device.hostdev0.x-igd-opregion=on"/>
+    <qemu:arg value="-set"/>
+    <qemu:arg value="device.hostdev0.ramfb=on"/>
+    <qemu:arg value="-set"/>
+    <qemu:arg value="device.hostdev0.driver=vfio-pci-nohotplug"/>
+    <qemu:arg value="-set"/>
+    <qemu:arg value="device.hostdev0.xres=1366"/>
+    <qemu:arg value="-set"/>
+    <qemu:arg value="device.hostdev0.yres=768"/>
+    <qemu:env name="INTEL_DEBUG" value="norbc"/>
+  </qemu:commandline>
 </domain>
-
