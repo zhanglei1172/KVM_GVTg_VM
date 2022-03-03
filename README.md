@@ -17,7 +17,7 @@ sudo systemctl enable libvirtd
 sudo systemctl enable virtlogd.socket
 
 1) **Kernel modules**
-    
+   
     Add:
     -   kvmgt
     -   vfio-iommu-type1
@@ -30,7 +30,7 @@ sudo systemctl enable virtlogd.socket
     -   sudo update-initramfs -u
 
 2) **Boot parameters**
-    
+   
     Modify GRUB_CMDLINE_LINUX line in:
     -   /etc/default/grub
     
@@ -40,14 +40,14 @@ sudo systemctl enable virtlogd.socket
     -   sudo update-grub
 
 3) **Libvirtd permissions**
-    
+   
     add kvm and libvirtd-qemu to the root group:
     -   usermod -a -G root kvm
     -   usermod -a -G root libvirtd-qemu
-sudo usermod -a -G libvirt $USER
-sudo usermod -a -G kvm $USER
-sudo virsh net-start default
-sudo virsh net-autostart default
+   sudo usermod -a -G libvirt $USER
+   sudo usermod -a -G kvm $USER
+   sudo virsh net-start default
+   sudo virsh net-autostart default
 # 配置Libvirt
 
 **编辑libvirt.conf**<br>
@@ -80,7 +80,7 @@ sudo systemctl restart libvirtd.service
 sudo systemctl restart virtlogd.socket
 ```
 4) **Gvtg hook**
-    
+   
     copy the content of "qemu" in: 
     -   /etc/libvirtd/hooks/qemu
     
@@ -88,7 +88,7 @@ sudo systemctl restart virtlogd.socket
     -   sudo chmod +X /etc/libvirtd/hooks/qemu
 
 6) **Create a virtual disk** 
-    
+   
     (40GB example):
     -   qemu-img create -f qcow2 name.qcow2 40G
 
@@ -102,6 +102,17 @@ sudo systemctl restart virtlogd.socket
 8) **For further performance optimization:**
     -   https://wiki.archlinux.org/index.php/Intel_GVT-g
     -   https://wiki.archlinux.org/index.php/QEMU
+
+
+
+## NET
+
+sudo vim /etc/sysctl.conf
+
+**net.ipv4.ip_forward**=1
+
+
+
 # Guest setup
 
 1) First Boot, Windows install:

@@ -1,9 +1,10 @@
+#!/bin/bash
 GVT_PCI=0000:00:02.0
 GVT_GUID1=44975ace-fe4c-11ea-83b8-03805b0e769c
 MDEV_TYPE=i915-GVTg_V5_4
-DOMAIN1=win10-virt
+DOMAIN1=win10-virt_GVT
 GVT_GUID2=44975ace-fe4c-11ea-83b8-03805b0e769d
-DOMAIN2=ubuntu20.04
+DOMAIN2=ubuntu20.04_GVT
 if [ $# -ge 3 ]; then
     if [ $1 = "$DOMAIN1" -a $2 = "prepare" -a $3 = "begin" ]; then
         echo "$GVT_GUID1" > "/sys/bus/pci/devices/$GVT_PCI/mdev_supported_types/$MDEV_TYPE/create"
