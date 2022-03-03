@@ -1,6 +1,6 @@
 <domain xmlns:qemu="http://libvirt.org/schemas/domain/qemu/1.0" type="kvm">
   <name>ubuntu20.04_GVT</name>
-  <uuid>029a06e5-8a30-4f52-8133-3a42271b5aa9</uuid>
+  <uuid>71076edd-29fa-4982-b3ce-3b77601397a5</uuid>
   <metadata>
     <libosinfo:libosinfo xmlns:libosinfo="http://libosinfo.org/xmlns/libvirt/domain/1.0">
       <libosinfo:os id="http://ubuntu.com/ubuntu/20.04"/>
