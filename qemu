@@ -5,6 +5,8 @@ MDEV_TYPE=i915-GVTg_V5_4
 DOMAIN1=win10-virt_GVT
 GVT_GUID2=44975ace-fe4c-11ea-83b8-03805b0e769d
 DOMAIN2=ubuntu20.04_GVT
+GVT_GUID3=44975ace-fe4c-11ea-83b8-03805b0e769f
+DOMAIN3=win11_GVT
 if [ $# -ge 3 ]; then
     if [ $1 = "$DOMAIN1" -a $2 = "prepare" -a $3 = "begin" ]; then
         echo "$GVT_GUID1" > "/sys/bus/pci/devices/$GVT_PCI/mdev_supported_types/$MDEV_TYPE/create"
@@ -17,5 +19,12 @@ if [ $# -ge 3 ]; then
         echo "$GVT_GUID2" > "/sys/bus/pci/devices/$GVT_PCI/mdev_supported_types/$MDEV_TYPE/create"
     elif [ $1 = "$DOMAIN2" -a $2 = "release" -a $3 = "end" ]; then
         echo 1 > /sys/bus/pci/devices/$GVT_PCI/$GVT_GUID2/remove
+    fi
+fi
+if [ $# -ge 3 ]; then
+    if [ $1 = "$DOMAIN3" -a $2 = "prepare" -a $3 = "begin" ]; then
+        echo "$GVT_GUID3" > "/sys/bus/pci/devices/$GVT_PCI/mdev_supported_types/$MDEV_TYPE/create"
+    elif [ $1 = "$DOMAIN3" -a $2 = "release" -a $3 = "end" ]; then
+        echo 1 > /sys/bus/pci/devices/$GVT_PCI/$GVT_GUID3/remove
     fi
 fi
