@@ -11,10 +11,10 @@
   <vcpu placement="static">4</vcpu>
   <iothreads>1</iothreads>
   <cputune>
-    <vcpupin vcpu="0" cpuset="3"/>
-    <vcpupin vcpu="1" cpuset="7"/>
-    <vcpupin vcpu="2" cpuset="2"/>
-    <vcpupin vcpu="3" cpuset="6"/>
+    <vcpupin vcpu="0" cpuset="0"/>
+    <vcpupin vcpu="1" cpuset="4"/>
+    <vcpupin vcpu="2" cpuset="1"/>
+    <vcpupin vcpu="3" cpuset="5"/>
     <emulatorpin cpuset="0,4"/>
     <iothreadpin iothread="1" cpuset="0,4"/>
   </cputune>
