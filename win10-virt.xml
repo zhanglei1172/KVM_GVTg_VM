@@ -1,28 +1,16 @@
 <domain type="kvm">
-  <name>win10-virt</name>
-  <uuid>198a24ab-f679-473e-af65-6d0f38911a70</uuid>
+  <name>win10</name>
+  <uuid>7a8c4b4f-a025-4d41-a32a-d8b0a0b3878e</uuid>
   <metadata>
     <libosinfo:libosinfo xmlns:libosinfo="http://libosinfo.org/xmlns/libvirt/domain/1.0">
       <libosinfo:os id="http://microsoft.com/win/10"/>
     </libosinfo:libosinfo>
   </metadata>
-  <memory unit="KiB">8388608</memory>
-  <currentMemory unit="KiB">8388608</currentMemory>
+  <memory unit="KiB">4194304</memory>
+  <currentMemory unit="KiB">4194304</currentMemory>
   <vcpu placement="static">4</vcpu>
-  <iothreads>1</iothreads>
-  <cputune>
-    <vcpupin vcpu="0" cpuset="0"/>
-    <vcpupin vcpu="1" cpuset="4"/>
-    <vcpupin vcpu="2" cpuset="1"/>
-    <vcpupin vcpu="3" cpuset="5"/>
-    <emulatorpin cpuset="0,4"/>
-    <iothreadpin iothread="1" cpuset="0,4"/>
-  </cputune>
-  <resource>
-    <partition>/machine</partition>
-  </resource>
   <os>
-    <type arch="x86_64" machine="pc-q35-4.2">hvm</type>
+    <type arch="x86_64" machine="pc-q35-6.2">hvm</type>
   </os>
   <features>
     <acpi/>
@@ -31,8 +19,6 @@
       <relaxed state="on"/>
       <vapic state="on"/>
       <spinlocks state="on" retries="8191"/>
-      <vendor_id state="on" value="FckYouPSI"/>
-      <frequencies state="on"/>
     </hyperv>
     <vmport state="off"/>
   </features>
@@ -49,25 +35,16 @@
   <on_reboot>restart</on_reboot>
   <on_crash>destroy</on_crash>
   <pm>
-    <suspend-to-mem enabled="yes"/>
-    <suspend-to-disk enabled="yes"/>
+    <suspend-to-mem enabled="no"/>
+    <suspend-to-disk enabled="no"/>
   </pm>
   <devices>
     <emulator>/usr/bin/qemu-system-x86_64</emulator>
-    <disk type="file" device="disk">
-      <driver name="qemu" type="qcow2"/>
-      <source file="/home/leizhang/VM/storage/win10.qcow2"/>
-      <backingStore/>
-      <target dev="vda" bus="virtio"/>
-      <boot order="1"/>
-      <address type="pci" domain="0x0000" bus="0x04" slot="0x00" function="0x0"/>
-    </disk>
     <disk type="file" device="cdrom">
       <driver name="qemu" type="raw"/>
       <source file="/home/leizhang/VM/ISO/cn_windows_10_enterprise_ltsc_2019_x64_dvd_2efc9ac2.iso"/>
       <target dev="sdb" bus="sata"/>
       <readonly/>
-      <boot order="2"/>
       <address type="drive" controller="0" bus="0" target="0" unit="1"/>
     </disk>
     <disk type="file" device="cdrom">
@@ -75,8 +52,14 @@
       <source file="/home/leizhang/VM/ISO/virtio-win-0.1.215.iso"/>
       <target dev="sdc" bus="sata"/>
       <readonly/>
-      <boot order="3"/>
       <address type="drive" controller="0" bus="0" target="0" unit="2"/>
+    </disk>
+    <disk type="file" device="disk">
+      <driver name="qemu" type="qcow2"/>
+      <source file="/home/leizhang/VM/storage/win10.qcow2"/>
+      <target dev="vda" bus="virtio"/>
+      <boot order="1"/>
+      <address type="pci" domain="0x0000" bus="0x05" slot="0x00" function="0x0"/>
     </disk>
     <controller type="usb" index="0" model="qemu-xhci" ports="15">
       <address type="pci" domain="0x0000" bus="0x02" slot="0x00" function="0x0"/>
@@ -110,16 +93,11 @@
       <target chassis="5" port="0x14"/>
       <address type="pci" domain="0x0000" bus="0x00" slot="0x02" function="0x4"/>
     </controller>
-    <controller type="pci" index="6" model="pcie-root-port">
-      <model name="pcie-root-port"/>
-      <target chassis="6" port="0x15"/>
-      <address type="pci" domain="0x0000" bus="0x00" slot="0x02" function="0x5"/>
-    </controller>
     <controller type="virtio-serial" index="0">
       <address type="pci" domain="0x0000" bus="0x03" slot="0x00" function="0x0"/>
     </controller>
     <interface type="network">
-      <mac address="52:54:00:0c:50:50"/>
+      <mac address="52:54:00:cf:77:84"/>
       <source network="default"/>
       <model type="virtio"/>
       <address type="pci" domain="0x0000" bus="0x01" slot="0x00" function="0x0"/>
@@ -143,6 +121,7 @@
     <input type="keyboard" bus="ps2"/>
     <graphics type="spice">
       <listen type="none"/>
+      <image compression="off"/>
       <gl enable="yes"/>
     </graphics>
     <sound model="ich9">
@@ -150,9 +129,7 @@
     </sound>
     <audio id="1" type="spice"/>
     <video>
-      <model type="virtio" heads="1" primary="yes">
-        <acceleration accel3d="yes"/>
-      </model>
+      <model type="qxl" ram="65536" vram="65536" vgamem="16384" heads="1" primary="yes"/>
       <address type="pci" domain="0x0000" bus="0x00" slot="0x01" function="0x0"/>
     </video>
     <redirdev bus="usb" type="spicevmc">
@@ -162,8 +139,7 @@
       <address type="usb" bus="0" port="3"/>
     </redirdev>
     <memballoon model="virtio">
-      <address type="pci" domain="0x0000" bus="0x05" slot="0x00" function="0x0"/>
+      <address type="pci" domain="0x0000" bus="0x04" slot="0x00" function="0x0"/>
     </memballoon>
   </devices>
-  <seclabel type="dynamic" model="dac" relabel="yes"/>
 </domain>
